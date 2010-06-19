@@ -10,9 +10,11 @@ class Ronin:
 				'Ronin, bot.', 
 				'Obj/Ronin.exe', 
 				'Obj/Ronin.Inject.dll', 
-				'Obj/Ronin.Common.dll'
+				'Obj/Ronin.Common.dll', 
+				'Obj/QtWrapper.dll'
 			)
 		
+		RoninInterface.Bot = Bot()
 		channelName as string
 		RemoteHooking.IpcCreateServer [of RoninInterface](channelName, WellKnownObjectMode.SingleCall)
 		pid as int

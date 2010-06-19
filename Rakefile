@@ -134,13 +134,21 @@ task :ronin => [:obj] do
 	
 	boo 'Obj/Ronin.Inject.dll', sign do
 		include 'Obj/Ronin.Common.dll'
+		include 'Obj/QtWrapper.dll'
 		include 'Inject/.../*.boo'
 	end
 	
 	boo 'Obj/Ronin.exe', sign do
+		include 'Obj/QtWrapper.dll'
 		include 'Obj/Ronin.Common.dll'
 		include 'App/.../*.boo'
 	end
 	
+	sh 'corflags', '/32bit+', '/Force', 'Obj/Ronin.exe'
+	sh 'sn', '/R', 'Obj/Ronin.exe', 'SigningKey.snk'
+	sh 'corflags', '/32bit+', '/Force', 'Obj/Ronin.Inject.dll'
+	sh 'sn', '/R', 'Obj/Ronin.Inject.dll', 'SigningKey.snk'
+	sh 'corflags', '/32bit+', '/Force', 'Obj/Ronin.Common.dll'
+	sh 'sn', '/R', 'Obj/Ronin.Common.dll', 'SigningKey.snk'
 	sh 'gacutil', '/i', 'Obj/Ronin.exe'
 end
