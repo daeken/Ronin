@@ -66,7 +66,7 @@ class BotTableModel(MarshalByRefObject, IBotTableModel):
 		print ret
 	
 	def DealPlayerCard(suit as Suit, rank as Rank, player as int):
-		pass
+		print 'Player card: {0} {1} {2}' % (suit, rank, player)
 	
 	def ActionOn(player as int):
 		pass
